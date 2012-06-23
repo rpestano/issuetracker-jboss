@@ -43,6 +43,9 @@ public class UsuarioServiceImpl extends StatelessHibernateService<Usuario, Long>
 		if(isUsuarioExistente(usuario)){
 			throw new BusinessException("Usuário com o login:"+usuario.getLogin() + " já cadastrado em nossa base de dados.");
 		}
+		if(usuario.getLogin().equalsIgnoreCase("admin")){
+			throw new BusinessException("Não é possível alterar o usuário administrator godlike");
+		}
 		super.saveOrUpdate(usuario);
 		
 	}
