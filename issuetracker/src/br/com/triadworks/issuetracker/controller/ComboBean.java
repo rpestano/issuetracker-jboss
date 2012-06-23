@@ -12,6 +12,7 @@ import br.com.triadworks.issuetracker.model.Projeto;
 import br.com.triadworks.issuetracker.model.Usuario;
 
 import com.jsf.conventions.qualifier.StatefulService;
+import com.jsf.conventions.qualifier.StatelessService;
 import com.jsf.conventions.service.BaseService;
 
 @Named
@@ -22,10 +23,10 @@ public class ComboBean implements Serializable {
 	
 	private List<Usuario> usuarios;
 	
-	@Inject @StatefulService(entity=Projeto.class)
+	@Inject @StatelessService(entity=Projeto.class)
 	private BaseService projetoService;
 	
-	@Inject @StatefulService(entity=Usuario.class)
+	@Inject @StatelessService(entity=Usuario.class)
 	private BaseService usuarioService;
 
 	public List<Projeto> getProjetos() {
