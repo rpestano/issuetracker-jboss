@@ -18,7 +18,7 @@ import com.jsf.conventions.qualifier.Service;
 
 @Named
 @ViewAccessScoped
-//@Service(name="usuarioService")//set superClass service by name (conflito com o interceptor de segurança @SecurityMethod) bug:http://code.google.com/p/jsf-conventions-framework/issues/detail?id=26
+@Service(name="usuarioService")//set superClass service by name  
 public class UsuarioBean extends BaseMBean<Usuario> implements Serializable {
 
 	private Usuario usuario = new Usuario();
@@ -32,10 +32,10 @@ public class UsuarioBean extends BaseMBean<Usuario> implements Serializable {
 		setBeanState(CrudState.FIND);
 	}
 	
-	@Inject
-	public void setService(UsuarioService usuarioService){
-		super.setBaseService(usuarioService);
-	}
+//	@Inject 
+//	public void setService(UsuarioService usuarioService){//injetando a nivel de classe com @Service
+//		super.setBaseService(usuarioService);
+//	}
 	
 	public UsuarioService getUsuarioService() {
 		return (UsuarioService) super.getBaseService();
