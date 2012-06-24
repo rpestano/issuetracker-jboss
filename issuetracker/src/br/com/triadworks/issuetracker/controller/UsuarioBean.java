@@ -132,12 +132,6 @@ public class UsuarioBean extends BaseMBean<Usuario> implements Serializable {
 	public void setFacesUtils(FacesUtils facesUtils) {
 		this.facesUtils = facesUtils;
 	}
-
-	@Override
-	public Usuario create() {
-		 return new Usuario();
-	}
-
 	
 
 }

@@ -45,6 +45,7 @@ public class IssueServiceImpl extends StatefulHibernateService<Issue, Long>
 	public void comenta(Long id, Comentario comentario) {
 		Issue issue = carrega(id);
 		issue.comenta(comentario); // thanks persistence context ;-)
+		super.flushSession();
 	}
 
 	@Override
@@ -52,6 +53,7 @@ public class IssueServiceImpl extends StatefulHibernateService<Issue, Long>
 	public void fecha(Long id, Comentario comentario) {
 		Issue issue = carrega(id);
 		issue.fecha(comentario); // thanks persistence context ;-)
+		super.flushSession(); 
 	}
 
 	@Override
