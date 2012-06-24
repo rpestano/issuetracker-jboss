@@ -15,7 +15,6 @@ import javax.inject.Qualifier;
 @Qualifier
 @Retention(RUNTIME)
 @Target({ElementType.FIELD,ElementType.METHOD})
-public @interface Unit {
-	@Nonbinding
-	String name() default "issueTrackerPU";
+public @interface UserRole {
+	 
 }

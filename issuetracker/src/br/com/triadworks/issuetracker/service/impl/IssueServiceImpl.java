@@ -20,9 +20,10 @@ import br.com.triadworks.issuetracker.service.IssueService;
 import com.jsf.conventions.exception.BusinessException;
 import com.jsf.conventions.model.ConventionsDataModel;
 import com.jsf.conventions.service.impl.StatefulHibernateService;
+import com.jsf.conventions.service.impl.StatelessHibernateService;
 
 @Named("issueService")
-public class IssueServiceImpl extends StatefulHibernateService<Issue, Long>
+public class IssueServiceImpl extends StatelessHibernateService<Issue, Long>
 		implements IssueService {
 
 	private static final long serialVersionUID = 1L;
@@ -108,7 +109,7 @@ public class IssueServiceImpl extends StatefulHibernateService<Issue, Long>
 		String nomeProjeto = null;
 		
 		// configura filtros das colunas da tabela, somente necessário se houver relacionamentos(ex:issue->projeto)
-		// ou para alterar comportamento padrão dos filtros {@see StandaloneHenericHibernateDao#addBasicFilterRestrictions}
+		// ou para alterar o comportamento padrão dos filtros {@see CustomGenericHibernateDao#addBasicFilterRestrictions()}
 		if (filters != null && !filters.isEmpty()) {
 		    nomeProjeto = filters.get("projeto.nome");
 			if(nomeProjeto != null){

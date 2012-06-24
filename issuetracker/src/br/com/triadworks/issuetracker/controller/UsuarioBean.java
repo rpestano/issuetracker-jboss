@@ -1,29 +1,24 @@
 package br.com.triadworks.issuetracker.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.faces.component.UIForm;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
 
-import com.jsf.conventions.bean.BaseMBean;
-import com.jsf.conventions.bean.state.CrudState;
-import com.jsf.conventions.qualifier.PersistentClass;
-import com.jsf.conventions.qualifier.SecurityMethod;
-import com.jsf.conventions.qualifier.Service;
-
 import br.com.triadworks.issuetracker.controller.util.FacesUtils;
 import br.com.triadworks.issuetracker.model.Usuario;
 import br.com.triadworks.issuetracker.service.UsuarioService;
 
+import com.jsf.conventions.bean.BaseMBean;
+import com.jsf.conventions.bean.state.CrudState;
+import com.jsf.conventions.qualifier.SecurityMethod;
+import com.jsf.conventions.qualifier.Service;
+
 @Named
 @ViewAccessScoped
-@Service(name="usuarioService")//set superClass service by name
+//@Service(name="usuarioService")//set superClass service by name (conflito com o interceptor de segurança @SecurityMethod) bug:http://code.google.com/p/jsf-conventions-framework/issues/detail?id=26
 public class UsuarioBean extends BaseMBean<Usuario> implements Serializable {
 
 	private Usuario usuario = new Usuario();
@@ -37,6 +32,11 @@ public class UsuarioBean extends BaseMBean<Usuario> implements Serializable {
 		setBeanState(CrudState.FIND);
 	}
 	
+	@Inject
+	public void setService(UsuarioService usuarioService){
+		super.setBaseService(usuarioService);
+	}
+	
 	public UsuarioService getUsuarioService() {
 		return (UsuarioService) super.getBaseService();
 	}
@@ -44,14 +44,15 @@ public class UsuarioBean extends BaseMBean<Usuario> implements Serializable {
 	public void lista() {
 		super.setFindState();
 	}
-
+	
+	@SecurityMethod(rolesAllowed={"godlike"},message="Somente o usuário com perfil 'godlike' pode incluir usuários.")
 	public void preparaParaAdicionar() {
 		this.usuario = new Usuario();
 		super.setInsertState();
 	}
 	
 	
-
+	
 	public void adiciona() {
 
 		boolean senhaInvalida = !confirmacaoDeSenha.equals(usuario.getSenha());
@@ -74,10 +75,9 @@ public class UsuarioBean extends BaseMBean<Usuario> implements Serializable {
 				.adicionaMensagemDeInformacao("Usuário removido com sucesso!");
 		lista();
 	}
-
+	@SecurityMethod(rolesAllowed={"godlike"},message="Somente o usuário com perfil 'godlike' pode alterar usuários.")
 	public void preparaParaAlterar(Usuario usuario) {
-		this.usuario = getUsuarioService().carrega(usuario.getId()); // evita
-																		// LazyInitializationException
+		this.usuario = getUsuarioService().carrega(usuario.getId()); // evita LazyInitializationException
 		setUpdateState();
 	}
 

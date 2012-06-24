@@ -27,6 +27,7 @@ import com.jsf.conventions.qualifier.Service;
 
 @Named
 @ViewAccessScoped
+@Service(name="issueService")//set superClass service by name
 public class IssueBean extends BaseMBean<Issue> implements Serializable{
 	
 	
@@ -40,8 +41,7 @@ public class IssueBean extends BaseMBean<Issue> implements Serializable{
 	}
 
 	@Inject
-	public IssueBean(IssueService issueService, UsuarioWeb usuarioWeb, FacesUtils facesUtils) {
-		super.setBaseService(issueService);  
+	public IssueBean(UsuarioWeb usuarioWeb, FacesUtils facesUtils) {
 		this.usuarioWeb = usuarioWeb;
 		this.facesUtils = facesUtils;
 		this.setBeanState(CrudState.FIND);

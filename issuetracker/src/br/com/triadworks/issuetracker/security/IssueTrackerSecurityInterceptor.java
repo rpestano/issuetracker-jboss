@@ -3,7 +3,10 @@ package br.com.triadworks.issuetracker.security;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.interceptor.Interceptor;
+
+import br.com.triadworks.issuetracker.qualifier.UserRole;
 
 import com.jsf.conventions.interceptor.AbstractSecurityMethodInterceptor;
 import com.jsf.conventions.qualifier.SecurityMethod;
@@ -14,6 +17,8 @@ import com.jsf.conventions.qualifier.SecurityMethod;
 @SecurityMethod  
 public class IssueTrackerSecurityInterceptor extends AbstractSecurityMethodInterceptor{  
   
+	@Inject @UserRole
+	private String currentRole;
     /**  
      * this method is responsible for deciding if current user has permition   
      * to execute a method  
@@ -21,16 +26,15 @@ public class IssueTrackerSecurityInterceptor extends AbstractSecurityMethodInter
      * @param rolesAllowed roles passed in the method  
      * @return true if user has permition, false otherwise  
      */  
-    @Override  
+	@Override  
+    @SuppressWarnings("unchecked")
     public boolean checkUserPermissions(String[] rolesAllowed) {  
         //user role(s) should be extracted from current logged user  
-        //we just put the role in the session for testing purposes  
-        List<String> userRoles = (List<String>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userRoles");  
-        if(userRoles == null || userRoles.isEmpty()){  
+        if(currentRole == null || "".endsWith(currentRole)){  
             return false;  
         }  
         for (String role : rolesAllowed) {  
-            if(userRoles.contains(role)){  
+            if(currentRole.equals(role)){  
                 return true;  
             }  
         }  
