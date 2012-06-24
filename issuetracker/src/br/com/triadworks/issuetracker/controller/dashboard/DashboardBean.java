@@ -1,8 +1,6 @@
 package br.com.triadworks.issuetracker.controller.dashboard;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -12,12 +10,13 @@ import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessS
 
 import br.com.triadworks.issuetracker.controller.UsuarioWeb;
 import br.com.triadworks.issuetracker.model.Issue;
-import br.com.triadworks.issuetracker.service.IssueService;
 
 import com.jsf.conventions.bean.BaseMBean;
+import com.jsf.conventions.qualifier.Service;
 
 @Named
 @ViewAccessScoped
+@Service(name="issueService")
 public class DashboardBean extends BaseMBean<Issue> implements Serializable{
 
 	
@@ -28,8 +27,7 @@ public class DashboardBean extends BaseMBean<Issue> implements Serializable{
 	}
 
 	@Inject
-	public DashboardBean(IssueService issueService, UsuarioWeb usuarioWeb) {
-		super.setBaseService(issueService);
+	public DashboardBean(UsuarioWeb usuarioWeb) {
 		this.usuarioWeb = usuarioWeb;
 	}
 	
@@ -40,8 +38,7 @@ public class DashboardBean extends BaseMBean<Issue> implements Serializable{
 	@PostConstruct
 	public void preload() {
 		Long id = usuarioWeb.getUsuario().getId();
-		getFilter().put("uID", id);
-//		issues = issueService.getIssuesDoUsuario(id);
+		getFilter().put("uID", id);//passa id do usuário logado para carregar as suas issues na issueService e mostrar no dashboard
 	}
 	
 }

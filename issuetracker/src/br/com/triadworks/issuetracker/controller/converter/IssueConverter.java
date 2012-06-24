@@ -14,7 +14,7 @@ import br.com.triadworks.issuetracker.model.Issue;
 import br.com.triadworks.issuetracker.service.IssueService;
 
 @Advanced
-@FacesConverter(value="issueConverter",forClass=Issue.class)
+@FacesConverter(value="issueConverter")
 public class IssueConverter extends AbstractBaseConverter{
 
 

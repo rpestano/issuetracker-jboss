@@ -27,15 +27,14 @@ import com.jsf.conventions.qualifier.Service;
 
 @Named
 @ViewAccessScoped
-@Service(name="issueService")//set superClass service by name
-public class IssueBean extends BaseMBean<Issue> implements Serializable{
-	
-	
+@Service(name = "issueService")
+// set superClass service by name
+public class IssueBean extends BaseMBean<Issue> implements Serializable {
+
 	private Issue issue = new Issue();
-	
+
 	private UsuarioWeb usuarioWeb;
 	private FacesUtils facesUtils;
-	
 
 	public IssueBean() {
 	}
@@ -47,83 +46,92 @@ public class IssueBean extends BaseMBean<Issue> implements Serializable{
 		this.setBeanState(CrudState.FIND);
 	}
 
-	IssueService getIssueService(){
+	IssueService getIssueService() {
 		return (IssueService) super.getBaseService();
 	}
-	
+
 	public void lista() {
 		setBeanState(CrudState.FIND);
 	}
-	
+
 	public void preparaParaAdicionar() {
 		this.issue = new Issue();
-//		issue.setProjeto(new Projeto()); // não mais necessário por causa do converter
-//		issue.setAssinadoPara(new Usuario());  // não mais necessário por causa do converter
+		// issue.setProjeto(new Projeto()); // não mais necessário por causa do
+		// converter
+		// issue.setAssinadoPara(new Usuario()); // não mais necessário por
+		// causa do converter
 		issue.setReportadoPor(usuarioWeb.getUsuario());
 		issue.setReportadoEm(new Date());
 		setBeanState(CrudState.INSERT);
 	}
-	
+
 	public void adiciona() {
 		getIssueService().salva(issue);
-		facesUtils.adicionaMensagemDeInformacao("Issue adicionada com sucesso!");
+		facesUtils
+				.adicionaMensagemDeInformacao("Issue adicionada com sucesso!");
 		lista();
 	}
-	
+
 	public void remove() {
 		getIssueService().remove(issue);
 		facesUtils.adicionaMensagemDeInformacao("Issue removida com sucesso!");
 		lista();
 	}
-	
+
 	public void preparaParaAlterar(Issue projeto) {
-		this.issue = getIssueService().carrega(projeto.getId()); // evita LazyInitializationException
+		this.issue = getIssueService().carrega(projeto.getId()); // evita
+																	// LazyInitializationException
 		setBeanState(CrudState.UPDATE);
 	}
-	
+
 	public void altera() {
 		getIssueService().atualiza(issue);
-		facesUtils.adicionaMensagemDeInformacao("Issue atualizada com sucesso!");
+		facesUtils
+				.adicionaMensagemDeInformacao("Issue atualizada com sucesso!");
 		lista();
 	}
-	
+
 	public void voltar() {
 		this.issue = new Issue();
 		lista();
 	}
-	
+
 	public boolean isAdicionando() {
 		return super.isInsertState();
 	}
+
 	public boolean isEditando() {
 		return super.isUpdateState();
 	}
+
 	public boolean isPesquisando() {
 		return super.isFindState();
 	}
-	
+
 	public Issue getIssue() {
 		return issue;
 	}
+
 	public void setIssue(Issue projeto) {
 		this.issue = projeto;
 	}
-	
+
 	@Produces
 	@Named("issueTypes")
-	public List<SelectItem> getIssueTypes(){
-		return new ArrayList<SelectItem>(){{add(new SelectItem(TipoDeIssue.BUG.name(), "Bug"));add(new SelectItem(TipoDeIssue.FEATURE.name(), "Feature"));}};
+	public List<SelectItem> getIssueTypes() {
+		List<SelectItem> tipos = new ArrayList<SelectItem>(){{
+			add(new SelectItem(TipoDeIssue.TODOS.name(), "Todos"));
+			add(new SelectItem(TipoDeIssue.BUG.name(), "Bug"));
+			add(new SelectItem(TipoDeIssue.FEATURE.name(), "Feature"));
+		}};
+		if(!isPesquisando()){
+			tipos.remove(0);
+		}
+	   return tipos;
 	}
 
-	
-	public void selecionaUsuario(SelectEvent event){
+	public void selecionaUsuario(SelectEvent event) {
 		issue.setAssinadoPara((Usuario) event.getObject());
 	}
-	
-	
+
 }
-
-
-
-
-

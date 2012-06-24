@@ -20,10 +20,9 @@ import br.com.triadworks.issuetracker.service.IssueService;
 import com.jsf.conventions.exception.BusinessException;
 import com.jsf.conventions.model.ConventionsDataModel;
 import com.jsf.conventions.service.impl.StatefulHibernateService;
-import com.jsf.conventions.service.impl.StatelessHibernateService;
 
 @Named("issueService")
-public class IssueServiceImpl extends StatelessHibernateService<Issue, Long>
+public class IssueServiceImpl extends StatefulHibernateService<Issue, Long>
 		implements IssueService {
 
 	private static final long serialVersionUID = 1L;
@@ -126,7 +125,7 @@ public class IssueServiceImpl extends StatelessHibernateService<Issue, Long>
 				if(TipoDeIssue.BUG.name().equals(tipo)){
 					dc.add(Restrictions.eq("tipo", TipoDeIssue.BUG));
 				}
-				else{
+				else if(TipoDeIssue.FEATURE.name().equals(tipo)){
 					dc.add(Restrictions.eq("tipo", TipoDeIssue.FEATURE));
 				}
 			}
