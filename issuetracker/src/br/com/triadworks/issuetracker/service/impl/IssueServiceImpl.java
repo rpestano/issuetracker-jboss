@@ -3,6 +3,9 @@ package br.com.triadworks.issuetracker.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
 import org.apache.myfaces.extensions.cdi.jpa.api.Transactional;
@@ -22,6 +25,7 @@ import com.jsf.conventions.model.ConventionsDataModel;
 import com.jsf.conventions.service.impl.StatefulHibernateService;
 
 @Named("issueService")
+@Stateless //required to have transaction method
 public class IssueServiceImpl extends StatefulHibernateService<Issue, Long>
 		implements IssueService {
 
@@ -41,19 +45,17 @@ public class IssueServiceImpl extends StatefulHibernateService<Issue, Long>
 	}
 
 	@Override
-	@Transactional
+	@TransactionAttribute
 	public void comenta(Long id, Comentario comentario) {
 		Issue issue = carrega(id);
 		issue.comenta(comentario); // thanks persistence context ;-)
-		super.flushSession();
 	}
 
 	@Override
-	@Transactional
+	@TransactionAttribute
 	public void fecha(Long id, Comentario comentario) {
 		Issue issue = carrega(id);
 		issue.fecha(comentario); // thanks persistence context ;-)
-		super.flushSession(); 
 	}
 
 	@Override
