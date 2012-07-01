@@ -1,21 +1,18 @@
 package br.com.triadworks.issuetracker.security;
 
-import java.util.List;
-
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.interceptor.Interceptor;
 
 import br.com.triadworks.issuetracker.qualifier.UserRole;
 
-import com.jsf.conventions.interceptor.AbstractSecurityMethodInterceptor;
 import com.jsf.conventions.qualifier.SecurityMethod;
+import com.jsf.conventions.security.SecurityMethodInterceptor;
 
  
 
 @Interceptor
 @SecurityMethod  
-public class IssueTrackerSecurityInterceptor extends AbstractSecurityMethodInterceptor{  
+public class IssueTrackerSecurityInterceptor extends SecurityMethodInterceptor{  
   
 	@Inject @UserRole
 	private String currentRole;

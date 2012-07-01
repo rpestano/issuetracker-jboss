@@ -25,7 +25,7 @@ import com.jsf.conventions.model.ConventionsDataModel;
 import com.jsf.conventions.service.impl.StatefulHibernateService;
 
 @Named("issueService")
-@Stateless //required to have transaction method
+@Stateless //required to have transactional methods
 public class IssueServiceImpl extends StatefulHibernateService<Issue, Long>
 		implements IssueService {
 
@@ -114,6 +114,16 @@ public class IssueServiceImpl extends StatefulHibernateService<Issue, Long>
 		// configura filtros das colunas da tabela, somente necessário se houver relacionamentos(ex:issue->projeto)
 		// ou para alterar o comportamento padrão dos filtros {@see CustomGenericHibernateDao#addBasicFilterRestrictions()}
 		if (filters != null && !filters.isEmpty()) {
+			
+			String id = filters.get("id");
+			if(id != null && !"".endsWith(id)){
+				try{
+					dc.add(Restrictions.eq("id", Long.parseLong(id)));
+				}catch (ClassCastException e) {
+					 
+				}
+			}
+			
 		    nomeProjeto = filters.get("projeto.nome");
 			if(nomeProjeto != null){
 				dc.createAlias("projeto", "projeto");
