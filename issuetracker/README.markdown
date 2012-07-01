@@ -4,7 +4,7 @@ JSF Issue Tracker Project
 <<<<<<<<<<<<<< ENGLISH  >>>>>>>>>>>>>
 -------------------------------------
 
-This project is a simple issue tracker using the following tecnologies: `JSF 2.x`, `Primefaces(3.3.1)`,` Primefaces extensions 0.5.1`, `CDI(Weld shiped with JBoss 7)`, `CODI(1.0.5)`, Conventions(0.9.1-SNAPSHOT) e `Hibernate 4.1.4` with the intention of showing some features of each tecnologies and how to integrate them in a real project.
+This project is a simple issue tracker using the following tecnologies: `JSF 2.x`, `Primefaces(3.3.1)`,` Primefaces extensions 0.5.1`, `CDI(Weld shiped with JBoss 7)`, `CODI(1.0.5)`, `Conventions(0.9.3-SNAPSHOT)` e `Hibernate 4.1.4` with the intention of showing some features of each tecnologies and how to integrate them in a real project.
   
 Its yet another version of the project https://github.com/rponte/jsf-issuetracker-project which is built during the courses and trainings of **JSF 2, Spring and Hibernate** lead by [TriadWorks](http://www.triadworks.com.br).
 
