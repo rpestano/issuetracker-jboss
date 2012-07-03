@@ -38,7 +38,7 @@ public class DashboardBean extends BaseMBean<Issue> implements Serializable{
 	@PostConstruct
 	public void preload() {
 		Long id = usuarioWeb.getUsuario().getId();
-		getFilter().put("uID", id);//passa id do usuário logado para carregar as suas issues na issueService e mostrar no dashboard
+		getPaginator().getFilter().put("uID", id);//passa id do usuário logado para carregar as suas issues na issueService e mostrar no dashboard
 	}
 	
 }
