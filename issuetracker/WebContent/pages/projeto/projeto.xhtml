@@ -14,8 +14,7 @@
 			<h1>Cadastro de Projeto</h1>
 			
 			<h:form id="projetoForm">
-			<p:focus/>
-			<p:defaultCommand target="#{projetoBean.editando ? 'projetoForm:btAltera':'projetoForm:tabela:btNovo'}"/>
+				<p:remoteCommand name="updateRowCount" process="@none" update="projetoForm:tabela:projetoFooter"/>
 				<h:panelGroup layout="block" id="blocoDePesquisa" rendered="#{projetoBean.pesquisando}">
 					 <p:dataTable
 						id="tabela"
@@ -30,6 +29,7 @@
 						{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="5,10,15,20,30"
 						>
+					    <p:ajax process="@this" event="filter" oncomplete="updateRowCount()"/> 
 						<p:column headerText="ID" sortBy="#{projeto.id}" filterBy="#{projeto.id}">
 							##{projeto.id}
 						</p:column>
@@ -42,24 +42,25 @@
 							<f:facet name="header">
 								<h:outputText value="Ações" />
 							</f:facet>
-							<p:commandLink value="editar" update="@form	"
-								action="#{projetoBean.preparaParaAlterar(projeto)}"/>
-							&#160;	 
-							<h:commandLink value="remover"   
+							<h:commandLink value="editar"
+								action="#{projetoBean.preparaParaAlterar(projeto)}">
+								<f:ajax render="@form" />
+							</h:commandLink>  &#160;
+							<h:commandLink value="remover"
 								action="#{projetoBean.remove}"
 								onclick="return confirm('Deseja realmente remover este projeto?');">
-								<p:ajax process="@this" update="@form :mensagens"/>
+								<f:ajax render="@form :mensagens" />
 								<f:setPropertyActionListener 
 									target="#{projetoBean.projeto}" value="#{projeto}" />
 							</h:commandLink>
 						</p:column>
 						<f:facet name="footer">
-							<conventions:tableFooter message="Projetos encontrados"
-								mbean="#{projetoBean}" footerHeight="15px" renderAddButton="false" />
+							<conventions:tableFooter message="Projetos encontrados" id="projetoFooter"
+								mbean="#{projetoBean}" />
 						</f:facet>
 						<f:facet name="header">
 							<center>
-								<p:commandButton value="Novo" style="width:85px" id="btNovo"
+								<p:commandButton value="Novo" style="width:85px"
 									action="#{projetoBean.preparaParaAdicionar}" update="@form" />
 							</center>
 						</f:facet>
@@ -87,7 +88,7 @@
 							<f:ajax execute="@form" render="@form :mensagens" />
 							<pe:resetInput for="@form"/>
 						</h:commandButton>
-						<h:commandButton value="Alterar" id="btAltera"
+						<h:commandButton value="Alterar" 
 							action="#{projetoBean.altera}"
 							rendered="#{projetoBean.editando}">
 							<f:ajax execute="@form" render="@form :mensagens" />

@@ -14,6 +14,7 @@
 			<h1>Cadastro de Issue</h1>
 			<h:form id="issueForm">
 				<h:panelGroup layout="block" id="blocoDePesquisa" rendered="#{issueBean.pesquisando}">
+				<p:remoteCommand name="updateRowCount" process="@none" update="issueForm:tabela:issueFooter"/>
 					<p:dataTable
 						id="tabela"
 						value="#{issueBean.paginator.dataModel}"
@@ -27,6 +28,7 @@
 						{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="5,10,15,20,30"
 						>
+						<p:ajax process="@this" event="filter" oncomplete="updateRowCount()"/> 
 						<p:column headerText="ID" sortBy="#{issue.id}" filterBy="#{issue.id}">
 							##{issue.id}
 						</p:column>
@@ -79,7 +81,7 @@
 							</h:commandLink>
 						</p:column>
 					  <f:facet name="footer">
-                    		<conventions:tableFooter message="Issues encontradas" mbean="#{issueBean}" footerHeight="15px"  renderAddButton="false"/>
+                    		<conventions:tableFooter message="Issues encontradas" mbean="#{issueBean}" id="issueFooter"/>
               		  </f:facet>
               		  <f:facet name="header">
               		    <center>
@@ -100,7 +102,7 @@
 					<p:inputTextarea id="descricao" rows="3" 
 						required="true" label="Descrição" 
 						value="#{issueBean.issue.descricao}" />
-					 
+						
 					<p:outputLabel value="Projeto" for="projeto:comboOneMenu"/>
 					<conventions:combo value="#{issueBean.issue.projeto}" 
 									list="#{comboBean.projetos}" 
@@ -117,6 +119,7 @@
 						disabled="#{issueBean.editando}">
 						<f:selectItems value="#{issueTypes}"/>
 					</p:selectOneRadio>
+					
 					<p:outputLabel value="Reportado em" for="reportadoEm" />
 					<p:inputText id="reportadoEm" 
 						value="#{issueBean.issue.reportadoEm}" 

@@ -14,19 +14,21 @@
 			<h1>Cadastro de Usuários</h1>
 			
 			<h:form id="usuarioForm">
-			
+				
 				<h:panelGroup layout="block" id="blocoDePesquisa" rendered="#{usuarioBean.pesquisando}">
+				<p:remoteCommand name="updateRowCount" process="@none" update="usuarioForm:tabela:usuarioFooter"/>
 					<p:dataTable
 						id="tabela"
 						value="#{usuarioBean.paginator.dataModel}"
 						var="usuario"
 						lazy="true" paginator="true"
-					    emptyMessage="Nenhum usuário encontrada" 
+					    emptyMessage="Nenhum usuário encontrado" 
 						rowClasses="odd, even"
 						rows="5" paginatorPosition="bottom"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
 						{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="5,10,15,20,30">
+                        <p:ajax process="@this" event="filter" oncomplete="updateRowCount()"/> 
 						<p:column headerText="ID" sortBy="#{usuario.id}" filterBy="#{usuario.id}">
 							##{usuario.id}
 						</p:column>
@@ -43,23 +45,23 @@
 							<f:facet name="header">
 								<h:outputText value="Ações" />
 							</f:facet>
-							<p:commandLink value="editar" update="@form"
+							<h:commandLink value="editar"
 								action="#{usuarioBean.preparaParaAlterar(usuario)}">
-								 
-							</p:commandLink>  &#160;
-							<h:commandLink value="remover" 
+								<f:ajax render="@form" />
+							</h:commandLink>  &#160;
+							<h:commandLink value="remover"
 								action="#{usuarioBean.remove}"
 								disabled="#{usuario.id eq usuarioLogado.id}"
 								onclick="return confirm('Deseja realmente remover este usuário?');">
+								<f:ajax render="@form :mensagens" />
 								<f:setPropertyActionListener 
 									target="#{usuarioBean.usuario}" value="#{usuario}" />
-								<p:ajax process="@this" update="@form :mensagens"/>	
 							</h:commandLink>
 						</p:column>
 
 						<f:facet name="footer">
 							<conventions:tableFooter message="Usuários encontrados"
-								mbean="#{usuarioBean}" footerHeight="15px" renderAddButton="false" />
+								mbean="#{usuarioBean}" id="usuarioFooter"/>
 						</f:facet>
 						<f:facet name="header">
 							<center>
@@ -69,7 +71,7 @@
 						</f:facet>
 					</p:dataTable>
 					
-				</h:panelGroup >
+				</h:panelGroup>
 				
 				<h:panelGroup layout="block" id="blocoDeEdicao" 
 					rendered="#{not usuarioBean.pesquisando}">
@@ -123,7 +125,7 @@
 							<pe:resetInput for="@form"/>
 						</h:commandButton>
 					</div>
-				</h:panelGroup >
+				</h:panelGroup>
 			
 			</h:form>
 			

@@ -12,20 +12,22 @@
 	<h:form id="dashboardForm">
 		<div id="container" align="left">
 			<h1>Dashboard</h1>
-			<div id="dashboard">
+			<h:panelGroup layout="block" id="dashboard">
+			<p:remoteCommand name="updateRowCount" process="@none" update="dashboardForm:tabela:dashboardFooter"/>
 			    <p:dataTable
 						id="tabela"
 						value="#{dashboardBean.paginator.dataModel}"
 						var="issue"
 						lazy="true" paginator="true"
 					    widgetVar="tableVar" 
-					    emptyMessage="Nenhuma issue encontrada para o usuario: #{usuarioLogado.login}" 
+					    emptyMessage="Nenhuma issue encontrada" 
 						rowClasses="odd, even"
 						rows="5" paginatorPosition="bottom"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
 						{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="5,10,15,20,30"
 						>
+						<p:ajax process="@this" event="filter" oncomplete="updateRowCount()"/> 
 						<p:column headerText="ID" sortBy="#{issue.id}" filterBy="#{issue.id}">
 							<h:link value="##{issue.id}" outcome="detalhe">
 								<f:param name="id" value="#{issue.id}" />
@@ -60,10 +62,10 @@
 							</h:outputText>
 						</p:column>
 						<f:facet name="footer">
-                    		<conventions:tableFooter message="Issues encontradas para #{usuarioLogado.login}" mbean="#{dashboardBean}" footerHeight="15px"  renderAddButton="false"/>
+                    		<conventions:tableFooter id="dashboardFooter" message="Issues encontradas para #{usuarioLogado.login}" mbean="#{dashboardBean}"/>
               		  </f:facet>
 				 </p:dataTable>
-			</div>
+			</h:panelGroup>
 		</div>
 		</h:form>
 	</ui:define>
