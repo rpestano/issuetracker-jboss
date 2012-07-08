@@ -13,7 +13,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-3.3.1.jar"/>
 	<classpathentry kind="lib" path="etc/lib/hibernate-4.1.4/hibernate-core-4.1.4.Final.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-core-4.1.4.Final.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/conventions-core-0.9.4-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/conventions-core-0.9.5.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 7.1 Runtime">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.jsf;#system#;jst.web"/>
