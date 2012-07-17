@@ -1,18 +1,12 @@
 package br.com.triadworks.issuetracker.controller;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
-import javax.faces.component.UIForm;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
-
-import com.jsf.conventions.bean.BaseMBean;
-import com.jsf.conventions.bean.state.CrudState;
+import org.conventionsframework.bean.BaseMBean;
+import org.conventionsframework.bean.state.CrudState;
 
 import br.com.triadworks.issuetracker.controller.util.FacesUtils;
 import br.com.triadworks.issuetracker.model.Projeto;

@@ -4,15 +4,14 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.conventionsframework.exception.BusinessException;
+import org.conventionsframework.service.impl.StatelessHibernateService;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.triadworks.issuetracker.model.Projeto;
 import br.com.triadworks.issuetracker.service.ProjetoService;
-
-import com.jsf.conventions.exception.BusinessException;
-import com.jsf.conventions.service.impl.StatelessHibernateService;
 
 @Named("projetoService")//é acessado diretamente na tela(combo de projetos)
 public class ProjetoServiceImpl extends StatelessHibernateService<Projeto, Long> implements ProjetoService {

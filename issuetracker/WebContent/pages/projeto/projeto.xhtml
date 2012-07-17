@@ -79,19 +79,19 @@
 						<h:commandLink value="Voltar"
 							immediate="true" 
 							action="#{projetoBean.voltar}" >
-							<f:ajax execute="@form" render="@form :mensagens" />
+							<p:ajax process="@form" update="@form :mensagens" />
 							<pe:resetInput for="@form"/>
 						</h:commandLink> &#160;
 						<h:commandButton value="Inserir" 
 							action="#{projetoBean.adiciona}"
 							rendered="#{projetoBean.adicionando}">
-							<f:ajax execute="@form" render="@form :mensagens" />
+							<p:ajax process="@form" update="@form :mensagens" />
 							<pe:resetInput for="@form"/>
 						</h:commandButton>
 						<h:commandButton value="Alterar" 
 							action="#{projetoBean.altera}"
 							rendered="#{projetoBean.editando}">
-							<f:ajax execute="@form" render="@form :mensagens" />
+							<p:ajax process="@form" update="@form :mensagens" />
 							<pe:resetInput for="@form"/>
 						</h:commandButton>
 					</div>

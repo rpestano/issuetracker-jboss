@@ -7,13 +7,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
+import org.conventionsframework.qualifier.StatelessService;
+import org.conventionsframework.service.BaseService;
 
 import br.com.triadworks.issuetracker.model.Projeto;
 import br.com.triadworks.issuetracker.model.Usuario;
-
-import com.jsf.conventions.qualifier.StatefulService;
-import com.jsf.conventions.qualifier.StatelessService;
-import com.jsf.conventions.service.BaseService;
 
 @Named
 @ViewAccessScoped

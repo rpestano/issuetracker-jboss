@@ -146,7 +146,7 @@
 							immediate="true" 
 							action="#{issueBean.voltar}" >
 					        <pe:resetInput for="@form"/>  
-							<f:ajax execute="@form" render="@form" />
+							<p:ajax process="@form" update="@form" />
 						</h:commandLink> &#160;
 						<h:commandButton value="Inserir" 
 							action="#{issueBean.adiciona}"

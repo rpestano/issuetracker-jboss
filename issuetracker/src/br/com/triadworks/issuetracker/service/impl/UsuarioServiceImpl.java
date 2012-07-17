@@ -4,16 +4,14 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.conventionsframework.exception.BusinessException;
+import org.conventionsframework.service.impl.StatelessHibernateService;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.triadworks.issuetracker.model.Usuario;
 import br.com.triadworks.issuetracker.service.UsuarioService;
-
-import com.jsf.conventions.exception.BusinessException;
-import com.jsf.conventions.qualifier.SecurityMethod;
-import com.jsf.conventions.service.impl.StatelessHibernateService;
 
 @Named("usuarioService")
 public class UsuarioServiceImpl extends StatelessHibernateService<Usuario, Long> implements UsuarioService {

@@ -3,10 +3,10 @@ package br.com.triadworks.issuetracker.security;
 import javax.inject.Inject;
 import javax.interceptor.Interceptor;
 
-import br.com.triadworks.issuetracker.qualifier.UserRole;
+import org.conventionsframework.qualifier.SecurityMethod;
+import org.conventionsframework.security.SecurityMethodInterceptor;
 
-import com.jsf.conventions.qualifier.SecurityMethod;
-import com.jsf.conventions.security.SecurityMethodInterceptor;
+import br.com.triadworks.issuetracker.qualifier.UserRole;
 
  
 

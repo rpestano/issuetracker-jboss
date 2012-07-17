@@ -12,6 +12,7 @@ import javax.enterprise.inject.spi.BeanManager;
 
 import org.apache.myfaces.extensions.cdi.core.api.provider.BeanManagerProvider;
 
+
 /**
  *
  * @author rpestano
@@ -29,7 +30,7 @@ public class BeanManagerController {
     @SuppressWarnings("rawtypes")
 	public static Object getBeanByName(String name) {
     	try{
-	        BeanManager bm = BeanManagerProvider.getInstance().getBeanManager();
+	        BeanManager bm = (BeanManager) BeanManagerProvider.getInstance().getBeanManager();
 	        Set<Bean<?>> beans = bm.getBeans(name);
 	        if(beans != null && !beans.isEmpty()){
 	        	Bean bean = beans.iterator().next();

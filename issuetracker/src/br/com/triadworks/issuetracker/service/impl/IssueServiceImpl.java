@@ -7,6 +7,9 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.inject.Named;
 
+import org.conventionsframework.exception.BusinessException;
+import org.conventionsframework.model.WrappedData;
+import org.conventionsframework.service.impl.StatefulHibernateService;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -17,10 +20,6 @@ import br.com.triadworks.issuetracker.model.Comentario;
 import br.com.triadworks.issuetracker.model.Issue;
 import br.com.triadworks.issuetracker.model.TipoDeIssue;
 import br.com.triadworks.issuetracker.service.IssueService;
-
-import com.jsf.conventions.exception.BusinessException;
-import com.jsf.conventions.model.WrappedData;
-import com.jsf.conventions.service.impl.StatefulHibernateService;
 
 @Named("issueService")
 @Stateless //required to have transactional methods

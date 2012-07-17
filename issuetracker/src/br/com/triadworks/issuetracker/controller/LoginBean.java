@@ -8,13 +8,12 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.jsf.conventions.qualifier.StatelessService;
-import com.jsf.conventions.service.BaseService;
+import org.conventionsframework.qualifier.StatelessService;
+import org.conventionsframework.service.BaseService;
 
 import br.com.triadworks.issuetracker.controller.util.FacesUtils;
 import br.com.triadworks.issuetracker.model.Usuario;
 import br.com.triadworks.issuetracker.service.Autenticador;
-import br.com.triadworks.issuetracker.service.UsuarioService;
 
 @Named
 @RequestScoped
