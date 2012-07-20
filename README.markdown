@@ -55,7 +55,7 @@ Information ++
 **Rafael Pestano (the CDI adventurer)**
 - [blog](http://rpestano.wordpress.com/)
 - Twitter [@realpestano](http://twitter.com/#!/realpestano)
-- Homegrow framework used in this project (http://code.google.com/p/jsf-conventions-framework/).
+- Homegrow framework used in this project (http://conventionsframework.org/).
 
 **JSF Group (the group where we spread our crazy ideas)**
 - https://groups.google.com/group/javasf/
@@ -112,7 +112,7 @@ Mais informações
 **Rafael Pestano**
 - Meu [blog](http://rpestano.wordpress.com/)
 - Meu Twitter [@realpestano](http://twitter.com/#!/realpestano)
-- framework caseiro usado neste projeto (http://code.google.com/p/jsf-conventions-framework/).
+- framework caseiro usado neste projeto (http://conventionsframework.org/).
 
 
 **JSF Group**
