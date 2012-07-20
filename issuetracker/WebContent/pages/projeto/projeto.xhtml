@@ -40,16 +40,16 @@
 						
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="AÃ§Ãµes" />
+								<h:outputText value="Ações" />
 							</f:facet>
 							<h:commandLink value="editar"
 								action="#{projetoBean.preparaParaAlterar(projeto)}">
-								<f:ajax render="@form" />
+								<p:ajax update="@form" />
 							</h:commandLink>  &#160;
 							<h:commandLink value="remover"
 								action="#{projetoBean.remove}"
 								onclick="return confirm('Deseja realmente remover este projeto?');">
-								<f:ajax render="@form :mensagens" />
+								<p:ajax update="@form :mensagens" />
 								<f:setPropertyActionListener 
 									target="#{projetoBean.projeto}" value="#{projeto}" />
 							</h:commandLink>
