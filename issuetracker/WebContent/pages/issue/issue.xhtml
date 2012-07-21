@@ -32,7 +32,7 @@
 						<p:column headerText="ID" sortBy="#{issue.id}" filterBy="#{issue.id}">
 							##{issue.id}
 						</p:column>
-						<p:column headerText="SumÃ¡rio" sortBy="#{issue.sumario}" filterBy="#{issue.sumario}">
+						<p:column headerText="Sumário" sortBy="#{issue.sumario}" filterBy="#{issue.sumario}">
 							#{issue.sumario}
 						</p:column>
 						<p:column headerText="Projeto" sortBy="#{issue.projeto.nome}" filterBy="#{issue.projeto.nome}">
@@ -52,7 +52,7 @@
 						</p:column>
 						<p:column sortBy="#{issue.atualizadoEm}">
 							<f:facet name="header">
-								<h:outputText value="Ult. AtualizaÃ§Ã£o" />
+								<h:outputText value="Ult. Atualização" />
 							</f:facet>
 							<h:outputText value="#{issue.atualizadoEm}">
 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
@@ -66,7 +66,7 @@
 						</p:column>
 						<p:column >
 							<f:facet name="header">
-								<h:outputText value="AÃ§Ãµes" />
+								<h:outputText value="Ações" />
 							</f:facet>
 							<h:commandLink value="editar"
 								action="#{issueBean.preparaParaAlterar(issue)}">
@@ -74,7 +74,7 @@
 							</h:commandLink>  &#160;
 							<h:commandLink value="remover"
 								action="#{issueBean.remove}"
-								onclick="return confirm('Deseja realmente remover este usuÃ¡rio?');">
+								onclick="return confirm('Deseja realmente remover esta issue?');">
 								<p:ajax update="@form" />
 								<f:setPropertyActionListener 
 									target="#{issueBean.issue}" value="#{issue}" />
@@ -93,21 +93,21 @@
 				
 				<h:panelGroup layout="block" id="blocoDeEdicao" 
 					rendered="#{not issueBean.pesquisando}">
-					<p:outputLabel value="SumÃ¡rio" for="sumario" />
+					<p:outputLabel value="Sumário" for="sumario" />
 					<p:inputText id="sumario" styleClass="texto-longo"
 						value="#{issueBean.issue.sumario}" 
 						label="SumÃ¡rio" 
 						required="true" />
-					<p:outputLabel value="DescriÃ§Ã£o" for="descricao" />
+					<p:outputLabel value="Descrição" for="descricao" />
 					<p:inputTextarea id="descricao" rows="3" 
-						required="true" label="DescriÃ§Ã£o" 
+						required="true" label="Descrição" 
 						value="#{issueBean.issue.descricao}" />
 						
 					<p:outputLabel value="Projeto" for="projeto:comboOneMenu"/>
 					<conventions:combo value="#{issueBean.issue.projeto}" 
 									list="#{comboBean.projetos}" 
 									required="true"
-									requiredMessage="Projeto: campo Ã© obrigatÃ³rio"
+									requiredMessage="Campo projeto é obrigatório"
 									id="projeto"
 									emptyMessage="Selecione um projeto" 
 									converter="projetoConverter"/>

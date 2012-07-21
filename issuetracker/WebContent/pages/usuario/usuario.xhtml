@@ -11,7 +11,7 @@
 	
 	<ui:define name="conteudo">
 		<div id="container" align="left">
-			<h1>Cadastro de Usu√°rios</h1>
+			<h1>Cadastro de Usu·rios</h1>
 			
 			<h:form id="usuarioForm">
 				
@@ -22,7 +22,7 @@
 						value="#{usuarioBean.paginator.dataModel}"
 						var="usuario"
 						lazy="true" paginator="true"
-					    emptyMessage="Nenhum usu√°rio encontrado" 
+					    emptyMessage="Nenhum usu·rio encontrado" 
 						rowClasses="odd, even"
 						rows="5" paginatorPosition="bottom"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
@@ -43,7 +43,7 @@
 						</p:column>
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="A√ß√µes" />
+								<h:outputText value="AÁıes" />
 							</f:facet>
 							<h:commandLink value="editar"
 								action="#{usuarioBean.preparaParaAlterar(usuario)}">
@@ -52,7 +52,7 @@
 							<h:commandLink value="remover"
 								action="#{usuarioBean.remove}"
 								disabled="#{usuario.id eq usuarioLogado.id}"
-								onclick="return confirm('Deseja realmente remover este usu√°rio?');">
+								onclick="return confirm('Deseja realmente remover este usu·rio?');">
 								<p:ajax update="@form :mensagens" />
 								<f:setPropertyActionListener 
 									target="#{usuarioBean.usuario}" value="#{usuario}" />
@@ -60,7 +60,7 @@
 						</p:column>
 
 						<f:facet name="footer">
-							<conventions:tableFooter message="Usu√°rios encontrados"
+							<conventions:tableFooter message="Usu·rios encontrados"
 								mbean="#{usuarioBean}" id="usuarioFooter"/>
 						</f:facet>
 						<f:facet name="header">
@@ -92,7 +92,7 @@
 						value="#{usuarioBean.usuario.email}" 
 						label="E-mail" 
 						required="true" />
-					<p:fieldset legend="Entre com a senha e confirma√ß√£o de senha" styleClass="confirma-senha">
+					<p:fieldset legend="Entre com a senha e confirmaÁ„o de senha" styleClass="confirma-senha">
 						<p:outputLabel value="Senha" for="senha" />
 						<p:password id="senha" 
 							value="#{usuarioBean.usuario.senha}" 
