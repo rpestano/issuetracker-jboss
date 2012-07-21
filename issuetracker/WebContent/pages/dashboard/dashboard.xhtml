@@ -33,7 +33,7 @@
 								<f:param name="id" value="#{issue.id}" />
 							</h:link>
 						</p:column>
-						<p:column headerText="SumÃ¡rio" sortBy="#{issue.sumario}" filterBy="#{issue.sumario}">
+						<p:column headerText="Sumário" sortBy="#{issue.sumario}" filterBy="#{issue.sumario}">
 							<h:link value="#{issue.sumario}" outcome="detalhe">
 								<f:param name="id" value="#{issue.id}" />
 							</h:link>
@@ -55,7 +55,7 @@
 						</p:column>
 						<p:column sortBy="#{issue.atualizadoEm}">
 							<f:facet name="header">
-								<h:outputText value="Ult. AtualizaÃ§Ã£o" />
+								<h:outputText value="Ult. Atualização" />
 							</f:facet>
 							<h:outputText value="#{issue.atualizadoEm}">
 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
