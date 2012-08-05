@@ -8,7 +8,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.conventionsframework.qualifier.StatelessService;
+import org.conventionsframework.qualifier.Service;
+import org.conventionsframework.qualifier.Type;
 import org.conventionsframework.service.BaseService;
 
 import br.com.triadworks.issuetracker.controller.util.FacesUtils;
@@ -31,7 +32,7 @@ public class LoginBean implements Serializable {
 	@Inject
 	private FacesUtils facesUtils;
 
-	@Inject @StatelessService(entity=Usuario.class)
+	@Inject @Service(type=Type.STATELESS,entity=Usuario.class)
 	private BaseService usuarioService;
 
 	public String logar() {

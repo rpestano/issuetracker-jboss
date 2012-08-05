@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Named;
 
 import org.conventionsframework.exception.BusinessException;
@@ -91,6 +92,7 @@ public class IssueServiceImpl extends StatefulHibernateService<Issue, Long>
 	 * esta service for atualizada(via ajax ou não)
 	 */
 	@Override
+	@TransactionAttribute(TransactionAttributeType.NEVER)
 	public WrappedData<Issue> configFindPaginated(int first,
 			int pageSize, String sortField, SortOrder sortOrder,
 			Map<String, String> filters, Map<String, Object> externalFilter) {

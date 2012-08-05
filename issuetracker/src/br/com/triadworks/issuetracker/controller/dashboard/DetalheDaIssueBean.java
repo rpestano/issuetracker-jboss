@@ -61,7 +61,7 @@ public class DetalheDaIssueBean implements Serializable{
 	 */
 	public void comentaIssue() {
 		comentario.setAutor(usuarioWeb.getUsuario());
-		issueService.comenta(issue.getId(), comentario);
+		issueService.comenta(issue.getId(), comentario);//thanks persistence context
 		limpa();
 	}
 	
@@ -70,7 +70,7 @@ public class DetalheDaIssueBean implements Serializable{
 	 */
 	public void fechaIssue() {
 		comentario.setAutor(usuarioWeb.getUsuario());
-		issueService.fecha(issue.getId(), comentario);
+		issueService.fecha(issue.getId(), comentario);//thanks persistence context
 		limpa();
 	}
 	

@@ -5,7 +5,8 @@ import javax.inject.Inject;
 
 import org.apache.myfaces.extensions.cdi.core.api.Advanced;
 import org.conventionsframework.converter.AbstractBaseConverter;
-import org.conventionsframework.qualifier.StatelessService;
+import org.conventionsframework.qualifier.Service;
+import org.conventionsframework.qualifier.Type;
 import org.conventionsframework.service.BaseService;
 
 import br.com.triadworks.issuetracker.model.Issue;
@@ -16,7 +17,7 @@ public class IssueConverter extends AbstractBaseConverter{
 
 
 	@Inject
-	public void setService(@StatelessService(entity=Issue.class)BaseService service){
+	public void setService(@Service(type=Type.STATELESS,entity=Issue.class)BaseService service){
 		super.setBaseService(service);
 	}
 

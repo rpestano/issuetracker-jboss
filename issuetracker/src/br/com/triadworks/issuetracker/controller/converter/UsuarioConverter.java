@@ -12,6 +12,7 @@ import br.com.triadworks.issuetracker.service.UsuarioService;
 @Advanced
 @FacesConverter(value="usuarioConverter",forClass=Usuario.class)
 public class UsuarioConverter extends AbstractBaseConverter {
+	
 		@Inject
 		 public void setService(UsuarioService usuarioService){
 			 super.setBaseService(usuarioService);

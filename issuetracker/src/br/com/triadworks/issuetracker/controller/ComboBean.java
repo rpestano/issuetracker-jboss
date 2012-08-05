@@ -7,7 +7,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
-import org.conventionsframework.qualifier.StatelessService;
+import org.conventionsframework.qualifier.Service;
+import org.conventionsframework.qualifier.Type;
 import org.conventionsframework.service.BaseService;
 
 import br.com.triadworks.issuetracker.model.Projeto;
@@ -21,10 +22,10 @@ public class ComboBean implements Serializable {
 	
 	private List<Usuario> usuarios;
 	
-	@Inject @StatelessService(entity=Projeto.class)
+	@Inject @Service(type=Type.STATELESS,entity=Projeto.class)
 	private BaseService projetoService;
 	
-	@Inject @StatelessService(entity=Usuario.class)
+	@Inject @Service(type=Type.STATELESS,entity=Usuario.class)
 	private BaseService usuarioService;
 
 	public List<Projeto> getProjetos() {
